@@ -39,4 +39,13 @@ public class UserProfileDbHelper {
         }
         return currentUserProfile;
     }
+
+    public synchronized void saveUserProfile(UserProfile userProfile) {
+        try {
+            Dao<UserProfile, ?> userProfileDao = databaseHelper.getDao(UserProfile.class);
+            userProfileDao.createOrUpdate(userProfile);
+        } catch (SQLException e) {
+            Log.e(TAG, e.getMessage(), e);
+        }
+    }
 }

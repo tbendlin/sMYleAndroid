@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.theodorabendlin.mysmileandroid.activities.DashboardActivity">
+    
+    <FrameLayout
+        android:id="@+id/dashboard_activity_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/dashboard_bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:itemBackground="@color/colorPrimary"
+        app:itemIconTint="@drawable/dashboard_icon_selector"
+        app:itemTextColor="@drawable/dashboard_icon_selector"
+        app:menu="@menu/dashboard_menu"/>
 
-</android.support.constraint.ConstraintLayout>
+</android.support.design.widget.CoordinatorLayout>

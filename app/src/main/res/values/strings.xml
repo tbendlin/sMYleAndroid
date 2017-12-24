@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MySmileAndroid</string>
+
+    <!-- Dashboard activity -->
+    <string name="home">Home</string>
+    <string name="compliments">Compliments</string>
+    <string name="profile">Profile</string>
+
 </resources>
