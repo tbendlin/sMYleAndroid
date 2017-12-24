@@ -6,6 +6,8 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "user_profile")
 public class UserProfile {
 
+    public static final String DEFAULT_UUID = "1234";
+
     @DatabaseField(id = true)
     private String uuid;
 
