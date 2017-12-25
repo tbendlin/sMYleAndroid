@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="75dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/compliment_view_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:textSize="18sp"
+            android:textColor="@color/colorNavyBlue"
+            tools:text="You did great today!"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/compliment_view_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/medium_gray"
+                android:layout_gravity="start"
+                tools:text="Dec 10, 2017"/>
+
+            <TextView
+                android:id="@+id/compliment_view_repeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:textSize="14sp"
+                android:textColor="@color/medium_gray"
+                android:textAllCaps="true"
+                tools:text="MONTHLY"/>
+
+        </FrameLayout>
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

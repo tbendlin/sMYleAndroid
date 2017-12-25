@@ -6,4 +6,8 @@
     <string name="compliments">Compliments</string>
     <string name="profile">Profile</string>
 
+    <!-- Create/Update Compliment Activity -->
+    <string name="new_compliment">New Compliment</string>
+    <string name="update_compliment">Update Compliment</string>
+
 </resources>
