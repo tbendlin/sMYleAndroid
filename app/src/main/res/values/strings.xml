@@ -1,13 +1,32 @@
 <resources>
     <string name="app_name">MySmileAndroid</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
 
     <!-- Dashboard activity -->
     <string name="home">Home</string>
     <string name="compliments">Compliments</string>
     <string name="profile">Profile</string>
 
+    <!-- Compliment List Fragment -->
+    <string name="hey_there">Hey there!</string>
+    <string name="create_new_compliments_dialog">Learning to accept compliments and believe in them can help raise
+    your self esteem. Click on the add button below to compliment the future you!</string>
+
     <!-- Create/Update Compliment Activity -->
     <string name="new_compliment">New Compliment</string>
     <string name="update_compliment">Update Compliment</string>
+    <string name="enter_a_compliment">Enter a compliment</string>
+    <string name="mm">MM</string>
+    <string name="two_digit_format">%02d</string>
+    <string name="dd">DD</string>
+    <string name="yyyy">YYYY</string>
+    <string name="digit_format">%d</string>
+    <string name="repeat">Repeat</string>
+    <string name="counter_format">%d/140</string>
+    <string name="random">Random</string>
+    <string name="error_empty_compliment">Please enter a compliment</string>
+    <string name="error_too_long_compliment">Too many characters in this message</string>
+    <string name="error_invalid_date">Please pick a date to send the compliment</string>
 
 </resources>

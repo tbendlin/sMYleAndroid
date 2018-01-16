@@ -34,7 +34,7 @@ public class SmyleApp extends Application {
         JodaTimeAndroid.init(this);
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/Roboto_Condensed/RobotoCondensed-Regular.tff")
+                .setDefaultFontPath("fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf")
                 .setFontAttrId(R.attr.fontPath)
                 .build());
 

@@ -9,7 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        buildConfigField "int", "databaseVersion", "2"
+        buildConfigField "int", "databaseVersion", "4"
         resValue "string", "databaseName", "smyle_debug.db"
     }
 

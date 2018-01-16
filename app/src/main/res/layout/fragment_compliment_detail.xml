@@ -1,16 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <android.support.design.widget.TextInputLayout
+        android:id="@+id/add_compliment_edit_text_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="60dp"
+        app:errorTextAppearance="@style/ErrorTextAppearance"
+        app:errorEnabled="true"
+        app:counterEnabled="true"
+        app:counterMaxLength="140"
+        app:counterOverflowTextAppearance="@style/ErrorTextAppearance">
 
         <android.support.design.widget.TextInputEditText
+            android:id="@+id/add_compliment_edit_text"
+            android:theme="@style/EditTextTheme"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="125dp"
+            android:gravity="start|top"
+            android:hint="@string/enter_a_compliment"
+            android:inputType="textMultiLine"/>
 
     </android.support.design.widget.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/add_compliment_date_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/add_compliment_month"
+            android:theme="@style/EditTextTheme"
+            android:gravity="center"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="@string/mm"
+            android:focusable="false"
+            android:longClickable="false"
+            android:clickable="true"
+            />
+
+        <EditText
+            android:id="@+id/add_compliment_day"
+            android:theme="@style/EditTextTheme"
+            android:gravity="center"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="@string/dd"
+            android:focusable="false"
+            android:longClickable="false"
+            android:clickable="true"
+            />
+
+        <EditText
+            android:id="@+id/add_compliment_year"
+            android:theme="@style/EditTextTheme"
+            android:gravity="center"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="@string/yyyy"
+            android:focusable="false"
+            android:longClickable="false"
+            android:clickable="true"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/add_compliment_invalid_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/error_invalid_date"
+        android:textColor="@color/colorErrorRed"
+        android:textAlignment="center"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="@string/repeat"/>
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/add_compliment_repeat_spinner"
+            android:theme="@style/EditTextTheme"
+            android:layout_marginBottom="8dip"
+            android:layout_marginTop="5dip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:paddingTop="@dimen/default_gap"
+            android:background="@color/colorPrimary"/>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="25dp">
+
+        <Button
+            android:id="@+id/add_compliment_cancel"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|bottom"
+            android:background="@drawable/rectangle_green_background_transparent"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:text="@string/cancel"/>
+
+        <Button
+            android:id="@+id/add_compliment_save"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:background="@drawable/rectangle_green_background_transparent"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:text="@string/save"/>
+
+    </FrameLayout>
 
 </LinearLayout>

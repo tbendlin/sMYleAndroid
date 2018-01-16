@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
-                android:textColor="@color/medium_gray"
+                android:textColor="@color/colorMediumGray"
                 android:layout_gravity="start"
                 tools:text="Dec 10, 2017"/>
 
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:textSize="14sp"
-                android:textColor="@color/medium_gray"
+                android:textColor="@color/colorMediumGray"
                 android:textAllCaps="true"
                 tools:text="MONTHLY"/>
 

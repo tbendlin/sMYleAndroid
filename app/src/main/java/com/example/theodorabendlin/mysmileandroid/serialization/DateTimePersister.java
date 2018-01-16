@@ -25,7 +25,7 @@ public class DateTimePersister extends DateTimeType {
     private static final DateTimePersister singleton = new DateTimePersister();
 
     private DateTimePersister() {
-        super(SqlType.LONG, new Class<?>[] { DateTime.class });
+        super(SqlType.STRING, new Class<?>[] { DateTime.class });
     }
 
     public static DateTimePersister getSingleton() {
