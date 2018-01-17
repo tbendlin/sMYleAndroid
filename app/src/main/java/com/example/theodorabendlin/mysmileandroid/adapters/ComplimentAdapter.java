@@ -17,6 +17,7 @@ public class ComplimentAdapter extends RecyclerView.Adapter<ComplimentViewHolder
 
     private List<Compliment> compliments;
     private Context context;
+    private ComplimentClickListener listener;
 
     public ComplimentAdapter(Context context, List<Compliment> compliments) {
         this.compliments = compliments;
@@ -27,7 +28,7 @@ public class ComplimentAdapter extends RecyclerView.Adapter<ComplimentViewHolder
     public ComplimentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(this.context);
         View complimentView = inflater.inflate(R.layout.card_view_compliment, parent, false);
-        return new ComplimentViewHolder(complimentView);
+        return new ComplimentViewHolder(complimentView, listener);
     }
 
     @Override
@@ -38,5 +39,13 @@ public class ComplimentAdapter extends RecyclerView.Adapter<ComplimentViewHolder
     @Override
     public int getItemCount() {
         return ListUtil.getCount(this.compliments);
+    }
+
+    public void setOnComplimentClickListener(ComplimentClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface ComplimentClickListener {
+        void onItemClick(Compliment compliment);
     }
 }

@@ -25,7 +25,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class ComplimentListFragment extends BaseFragment {
+public class ComplimentListFragment extends BaseFragment implements ComplimentAdapter.ComplimentClickListener {
 
     @BindView(R.id.compliment_recycler_view) protected RecyclerView complimentRecyclerView;
     @BindView(R.id.empty_compliment_list_message) protected View emptyComplimentListMessageView;
@@ -59,6 +59,7 @@ public class ComplimentListFragment extends BaseFragment {
         complimentRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(),
                                                     DividerItemDecoration.VERTICAL));
         complimentAdapter = new ComplimentAdapter(getContext(), compliments);
+        complimentAdapter.setOnComplimentClickListener(this);
         complimentRecyclerView.setAdapter(complimentAdapter);
     }
 
@@ -81,16 +82,34 @@ public class ComplimentListFragment extends BaseFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == CreateUpdateComplimentActivity.CREATE_COMPLIMENT_REQUEST) {
-                String complimentId = data.getStringExtra(CreateUpdateComplimentActivity.KEY_COMPLIMENT_ID);
-                Compliment newCompliment = userProfileDbHelper.getComplimentById(complimentId);
-                if (newCompliment != null) {
-                    compliments.add(newCompliment);
-                    complimentAdapter.notifyItemInserted(compliments.size() - 1);
+            String complimentId = data.getStringExtra(CreateUpdateComplimentActivity.KEY_COMPLIMENT_ID);
+            Compliment compliment = userProfileDbHelper.getComplimentById(complimentId);
+            if (compliment != null) {
+                if (requestCode == CreateUpdateComplimentActivity.CREATE_COMPLIMENT_REQUEST) {
+                    compliments.add(compliment);
+                    complimentAdapter.notifyItemInserted(ListUtil.getCount(compliments) - 1);
+                } else {
+                    int position = getPositionOfCompliment(compliment);
+                    compliments.set(position, compliment);
+                    complimentAdapter.notifyItemChanged(position);
                 }
-            } else {
-                // Update the compliment
             }
         }
+    }
+
+    private int getPositionOfCompliment(Compliment compliment) {
+        for (int index = 0; index < ListUtil.getCount(compliments); index++) {
+            if (compliments.get(index).getId().equals(compliment.getId())) {
+                return index;
+            }
+        }
+        return RecyclerView.NO_POSITION;
+    }
+
+    @Override
+    public void onItemClick(Compliment compliment) {
+        Intent intent = new Intent(getActivity(), CreateUpdateComplimentActivity.class);
+        intent.putExtra(CreateUpdateComplimentActivity.KEY_COMPLIMENT_ID, compliment.getId());
+        startActivityForResult(intent, CreateUpdateComplimentActivity.UPDATE_COMPLIMENT_REQUEST);
     }
 }

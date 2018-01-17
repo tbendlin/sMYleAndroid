@@ -22,6 +22,8 @@ import com.example.theodorabendlin.mysmileandroid.utils.TextWatcherUtil;
 
 import org.joda.time.DateTime;
 
+import java.util.Random;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -30,6 +32,7 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
 public class ComplimentDetailFragment extends BaseFragment implements DatePickerFragment.DateSetCallback {
 
     private static final int MAX_CHARACTERS = 140;
+    private static final int COMPLIMENT_ID_LENGTH = 20;
 
     @BindView(R.id.add_compliment_edit_text_layout) protected TextInputLayout complimentEditTextLayout;
     @BindView(R.id.add_compliment_edit_text) protected TextInputEditText complimentEditText;
@@ -62,23 +65,60 @@ public class ComplimentDetailFragment extends BaseFragment implements DatePicker
 
         if (compliment == null) {
             compliment = new Compliment();
-            compliment.setId("1234");
             compliment.setRepeat(Compliment.Repeat.NONE);
             compliment.setUserProfile(SmyleApp.getSmyleComponent().getUserProfileDbHelper().getCurrentUserProfile());
+
+            String generatedId = generateStringId();
+            while (SmyleApp.getSmyleComponent().getUserProfileDbHelper().getComplimentById(generatedId) != null) {
+                generatedId = generateStringId();
+            }
+            compliment.setId(generatedId);
         }
 
+        setUpRepeatSpinner();
+        setUpTextWatchers();
+        initializeValues();
+    }
+
+    private String generateStringId() {
+        String candidateCharacters = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789";
+        StringBuilder builder = new StringBuilder();
+        Random random = new Random();
+
+        for (int count = 0; count < COMPLIMENT_ID_LENGTH; count++) {
+            char ch = candidateCharacters.charAt(random.nextInt(candidateCharacters.length()));
+            builder.append(ch);
+        }
+
+        return builder.toString();
+    }
+
+    private void setUpRepeatSpinner() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
                 R.array.repeat_options, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         repeatSpinner.setAdapter(adapter);
-
-        setUpTextWatchers();
     }
 
     private void setUpTextWatchers() {
         TextWatcherUtil.messageTextFocusChangeListener(complimentEditTextLayout, complimentEditText, getString(R.string.error_empty_compliment));
         TextWatcherUtil.messageTextEditChangeListener(complimentEditTextLayout, complimentEditText, getString(R.string.error_empty_compliment));
         TextWatcherUtil.messageTextEditorActionListener(complimentEditTextLayout, complimentEditText, getString(R.string.error_empty_compliment));
+    }
+
+    private void initializeValues() {
+        if (compliment.getMessage() != null && !TextUtils.isEmpty(compliment.getMessage())) {
+            complimentEditText.setText(compliment.getMessage());
+        }
+
+        if (compliment.getStartDateTime() != null) {
+            DateTime startDateTime = compliment.getStartDateTime();
+            complimentMonth.setText(getString(R.string.two_digit_format, startDateTime.getMonthOfYear()));
+            complimentDay.setText(getString(R.string.two_digit_format, startDateTime.getDayOfMonth()));
+            complimentYear.setText(getString(R.string.digit_format, startDateTime.getYear()));
+        }
+
+        repeatSpinner.setSelection(getRepeatItemPosition(), false);
     }
 
     @Override
@@ -171,4 +211,13 @@ public class ComplimentDetailFragment extends BaseFragment implements DatePicker
         }
     }
 
+    private int getRepeatItemPosition() {
+        String[] repeatOptions = getResources().getStringArray(R.array.repeat_options);
+        for (int index = 0; index < repeatOptions.length; index++) {
+            if (repeatOptions[index].equals(compliment.getRepeat().getValue())) {
+                return index;
+            }
+        }
+        return 0;
+    }
 }
