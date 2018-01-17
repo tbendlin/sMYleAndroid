@@ -23,7 +23,6 @@ public class CreateUpdateComplimentActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_update_compliment);
-        setSupportActionBar(toolbar);
 
         Intent intent = getIntent();
         String complimentId = null;
