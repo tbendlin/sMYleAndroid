@@ -10,15 +10,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".activities.SpashActivity"
-            android:configChanges="screenLayout|orientation|screenSize">
+            android:configChanges="screenLayout|orientation|screenSize"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".activities.DashboardActivity"
                   android:theme="@style/AppTheme"/>
+
+        <activity android:name=".activities.CreateUpdateComplimentActivity"
+            android:theme="@style/AddComplimentTheme"/>
+
     </application>
 
 </manifest>
